@@ -1,0 +1,25 @@
+.dots-loader {
+  display: grid;
+  place-items: center;
+  width: 51px;
+  height: 51px;
+  color: #d2d2d2;
+  font-size: 51px;
+  line-height: 61px;
+  font-family: 'Font Awesome 5 Pro', 'Open Sans', sans-serif;
+}
+
+.dots-loader__glyph {
+  display: inline-block;
+  animation: dots-pulse 1.2s infinite ease-in-out;
+}
+
+@keyframes dots-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}

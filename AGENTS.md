@@ -22,7 +22,7 @@ MUST follow best SOLID, DRY, KISS, YAGNI, GRASP
 ## REQUIREMENTS
 - TypeScript 
 - React / Redux architecture 
-- Use A xios library for API calls 
+- Use Axios library for API calls 
 - Use redux - saga library for side effects 
 - Full completeness of the implementation 
 - Decoupling and Modularity for both folder structure and components

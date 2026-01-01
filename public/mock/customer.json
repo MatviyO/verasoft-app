@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "id": "c-12345678",
+    "name": "Joseph Smith",
+    "gender": "Male",
+    "age": 33,
+    "email": "joe.smith@testemail.com",
+    "phones": ["248-555-1000", "248-555-1000 ext 1023", "248-555-1000"],
+    "accountId": "12345678"
+  },
+  "stats": {
+    "sms": 6,
+    "email": 4,
+    "orders": 1
+  },
+  "carrier": {
+    "status": "IN",
+    "since": "Jun 3, 2016"
+  }
+}

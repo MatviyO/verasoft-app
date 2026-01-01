@@ -1,0 +1,123 @@
+.orders-section {
+  display: grid;
+  gap: 10px;
+}
+
+.orders-section__table {
+  overflow: hidden;
+}
+
+.orders-section__header {
+  display: grid;
+  grid-template-columns: 140px 1fr 140px;
+  align-items: center;
+  background: #7a8191;
+  color: #ffffff;
+  padding: 8px 12px;
+}
+
+.orders-section__filters {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.orders-section__filter {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.orders-section__filter-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.orders-section__filter.is-active .orders-section__filter-label {
+  color: #ffffff;
+}
+
+.orders-section__title {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+}
+
+.orders-section__spacer {
+  width: 100%;
+}
+
+.orders-section__columns,
+.orders-section__row {
+  display: grid;
+  grid-template-columns: 130px 1fr 180px 120px 90px;
+  align-items: center;
+}
+
+.orders-section__columns {
+  background: #ffffff;
+  color: #7a7a7a;
+  font-size: 10px;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.orders-section__rows {
+  display: grid;
+}
+
+.orders-section__rows--empty {
+  min-height: 200px;
+  background: #fafafa;
+}
+
+.orders-section__row {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: 12px;
+  color: #3a3a3a;
+}
+
+.orders-section__row:nth-child(even) {
+  background: #f5f7f9;
+}
+
+.orders-section__loader {
+  display: grid;
+  place-items: center;
+  min-height: 200px;
+  width: 100%;
+}
+
+.orders-section__empty {
+  color: #cccccc;
+  font-size: 21px;
+  line-height: 28px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.orders-section__cell {
+  display: grid;
+  gap: 4px;
+}
+
+.orders-section__date {
+  font-weight: 600;
+}
+
+.orders-section__time,
+.orders-section__contact {
+  color: #7d7d7d;
+  font-size: 11px;
+}
+
+.orders-section__subject {
+  font-weight: 600;
+}

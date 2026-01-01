@@ -5,6 +5,11 @@
   color: #333333;
 }
 
+.orders-section {
+  max-width: 1135px;
+  margin: 0 auto;
+}
+
 .customer-page__summary {
   display: grid;
   grid-template-columns: 1fr 1.2fr;

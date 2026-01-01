@@ -1,0 +1,19 @@
+import { httpClient } from '@/shared/api/httpClient'
+import type {
+  CarrierStatus,
+  CommunicationStats,
+  CustomerProfile,
+} from '@/entities/customer/types'
+
+export type CustomerPayload = {
+  profile: CustomerProfile
+  stats: CommunicationStats
+  carrier: CarrierStatus
+}
+
+export const customerApi = {
+  getCustomer: async () => {
+    const response = await httpClient.get<CustomerPayload>('/customer.json')
+    return response.data
+  },
+}
