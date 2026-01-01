@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 8px 14px;
+  border-bottom: 2px solid #d7d7d7;
+}
+
+.header__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #333333;
+}
+
+.header__icon {
+  font-size: 22px;
+  color: #b0c6d8;
+}
+
+.header h1 {
+  font-size: 20px;
+  margin: 0;
+}

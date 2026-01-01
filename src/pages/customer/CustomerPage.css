@@ -1,0 +1,27 @@
+.customer-page {
+  max-width: 1165px;
+  margin: 18px auto 40px;
+  padding: 0 16px;
+  color: #333333;
+}
+
+.customer-page__summary {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 12px;
+  margin: 10px 0 16px;
+}
+
+.customer-page__notice {
+  margin: 12px 0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #f2f4f7;
+  font-size: 12px;
+  color: #4a4a4a;
+}
+
+.customer-page__notice--error {
+  background: #fde7e7;
+  color: #8b2c2c;
+}
