@@ -1,10 +1,9 @@
 import type { Order } from '@/entities/order/types'
-import { Badge } from '@/shared/ui/Badge/Badge'
 import { Button } from '@/shared/ui/Button/Button'
 import { Card } from '@/shared/ui/Card/Card'
 import { DotsLoader } from '@/shared/ui/Loader/DotsLoader'
 import { TabList } from '@/shared/ui/Tabs/TabList'
-import './OrdersSection.css'
+import './OrdersSection.scss'
 
 type OrdersSectionProps = {
   tabs: string[]
@@ -28,10 +27,13 @@ export const OrdersSection = ({
   const isSent = filter === 'sent'
   const isErrors = filter === 'errors'
   const isEmpty = !errorsLoading && orders.length === 0
+  const isLoading = errorsLoading
 
   return (
   <section className="orders-section">
-    <TabList tabs={tabs} active={activeTab} onChange={onTabChange} />
+    <div className="orders-section__tabs">
+      <TabList tabs={tabs} active={activeTab} onChange={onTabChange} />
+    </div>
     <Card className="orders-section__table">
       <div className="orders-section__header">
         <div className="orders-section__filters">
@@ -42,11 +44,7 @@ export const OrdersSection = ({
             onClick={() => onFilterChange('sent')}
             type="button"
           >
-            {isSent ? (
-              <Badge tone="neutral">Sent</Badge>
-            ) : (
-              <span className="orders-section__filter-label">Sent</span>
-            )}
+            <span className="orders-section__filter-label">Sent</span>
           </button>
           <button
             className={`orders-section__filter ${
@@ -55,11 +53,7 @@ export const OrdersSection = ({
             onClick={() => onFilterChange('errors')}
             type="button"
           >
-            {isErrors ? (
-              <Badge tone="neutral">Errors</Badge>
-            ) : (
-              <span className="orders-section__filter-label">Errors</span>
-            )}
+            <span className="orders-section__filter-label">Errors</span>
           </button>
         </div>
         <div className="orders-section__title">Recent Orders</div>
@@ -76,7 +70,7 @@ export const OrdersSection = ({
       )}
       <div
         className={`orders-section__rows ${
-          isEmpty ? 'orders-section__rows--empty' : ''
+          isEmpty || isLoading ? 'orders-section__rows--empty' : ''
         }`.trim()}
       >
         {errorsLoading ? (
@@ -101,7 +95,11 @@ export const OrdersSection = ({
               </div>
               <div className="orders-section__cell">{order.orderNumber}</div>
               <div className="orders-section__cell">
-                <Button size="sm" variant="ghost">
+                <Button
+                  className="orders-section__resend"
+                  size="sm"
+                  variant="ghost"
+                >
                   Resend
                 </Button>
               </div>

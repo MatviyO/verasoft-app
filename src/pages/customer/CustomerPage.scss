@@ -1,7 +1,7 @@
 .customer-page {
-  max-width: 1165px;
+  max-width: 1135px;
   margin: 18px auto 40px;
-  padding: 0 16px;
+  padding: 0;
   color: #333333;
 }
 
@@ -11,10 +11,9 @@
 }
 
 .customer-page__summary {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 12px;
-  margin: 10px 0 16px;
+  display: flex;
+  gap: 5px;
+  margin: 10px 0 7px;
 }
 
 .customer-page__notice {

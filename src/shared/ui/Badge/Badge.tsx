@@ -1,5 +1,5 @@
 import type { HTMLAttributes, PropsWithChildren } from 'react'
-import './Badge.css'
+import './Badge.scss'
 
 type BadgeProps = PropsWithChildren<
   HTMLAttributes<HTMLSpanElement> & { tone?: 'neutral' | 'dark' }

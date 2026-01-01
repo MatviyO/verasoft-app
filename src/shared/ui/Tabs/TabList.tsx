@@ -1,4 +1,4 @@
-import './Tabs.css'
+import './Tabs.scss'
 
 type TabListProps = {
   tabs: string[]

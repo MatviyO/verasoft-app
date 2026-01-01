@@ -10,7 +10,7 @@ import { Header } from '@/widgets/header/Header'
 import { CustomerSummary } from '@/widgets/customer-summary/CustomerSummary'
 import { ActivitySummary } from '@/widgets/activity-summary/ActivitySummary'
 import { OrdersSection } from '@/widgets/orders-section/OrdersSection'
-import './CustomerPage.css'
+import './CustomerPage.scss'
 
 export const CustomerPage = () => {
   const dispatch = useAppDispatch()

@@ -1,4 +1,4 @@
-import './StatTile.css'
+import './StatTile.scss'
 
 type StatTileProps = {
   label: string

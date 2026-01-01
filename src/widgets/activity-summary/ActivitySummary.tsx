@@ -4,7 +4,7 @@ import type {
 } from '@/entities/customer/types'
 import { Card } from '@/shared/ui/Card/Card'
 import { StatTile } from '@/shared/ui/StatTile/StatTile'
-import './ActivitySummary.css'
+import './ActivitySummary.scss'
 
 type ActivitySummaryProps = {
   stats: CommunicationStats

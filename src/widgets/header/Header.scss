@@ -1,0 +1,53 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0 14px;
+  border-bottom: 2px solid #4d4d4d;
+}
+
+.header__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #333333;
+}
+
+.header__icon {
+  width: 28px;
+  height: 25px;
+  text-align: left;
+  font: normal normal 300 25px/30px 'Font Awesome 5 Pro', sans-serif;
+  letter-spacing: 0;
+  color: #aaaaaa;
+  opacity: 1;
+}
+
+.header h1 {
+  text-align: left;
+  font: normal normal 600 25px/34px 'Open Sans', sans-serif;
+  letter-spacing: 0;
+  color: #000000;
+  opacity: 1;
+  margin: 0;
+}
+
+.header__new-order {
+  width: 200px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #404040;
+  border-radius: 4px;
+  opacity: 1;
+  text-align: center;
+  font: normal normal normal 18px/21px Arial, sans-serif;
+  letter-spacing: 0;
+  color: #fcfeff;
+  box-shadow: none;
+}
+
+.header__new-order:hover {
+  background: #404040;
+}

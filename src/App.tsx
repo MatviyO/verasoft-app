@@ -1,5 +1,5 @@
 import { CustomerPage } from '@/pages/customer'
-import './App.css'
+import './App.scss'
 
 function App() {
   return <CustomerPage />

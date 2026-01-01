@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes } from 'react'
-import './Button.css'
+import './Button.scss'
 
 type ButtonVariant = 'primary' | 'ghost' | 'outline'
 type ButtonSize = 'sm' | 'md'

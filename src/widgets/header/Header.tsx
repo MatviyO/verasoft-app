@@ -1,5 +1,5 @@
 import { Button } from '@/shared/ui/Button/Button'
-import './Header.css'
+import './Header.scss'
 
 type HeaderProps = {
   title: string
@@ -13,6 +13,6 @@ export const Header = ({ title }: HeaderProps) => (
       </span>
       <h1>{title}</h1>
     </div>
-    <Button>New Order</Button>
+    <Button className="header__new-order">New Order</Button>
   </header>
 )

@@ -1,4 +1,4 @@
-import './DotsLoader.css'
+import './DotsLoader.scss'
 
 export const DotsLoader = () => (
   <div className="dots-loader" role="status" aria-label="Loading">

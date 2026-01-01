@@ -1,5 +1,5 @@
 import type { HTMLAttributes, PropsWithChildren } from 'react'
-import './Card.css'
+import './Card.scss'
 
 type CardProps = PropsWithChildren<HTMLAttributes<HTMLDivElement>>
 
