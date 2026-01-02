@@ -1,5 +1,6 @@
 import type { Order } from '@/entities/order/types';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 type OrdersSortKey = 'date' | 'subject' | 'type' | 'orderNumber';
 type OrdersSortDirection = 'asc' | 'desc';
