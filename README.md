@@ -51,6 +51,10 @@ pnpm install
 pnpm dev
 ```
 
+## Live Build
+
+[https://verasoft-app.vercel.app/](https://verasoft-app.vercel.app/)
+
 ## Scripts
 
 - `pnpm dev` - start local dev server
