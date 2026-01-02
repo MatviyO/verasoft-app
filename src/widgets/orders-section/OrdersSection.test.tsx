@@ -3,6 +3,8 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { OrdersSection } from './OrdersSection';
 
+const noop = () => undefined;
+
 describe('OrdersSection', () => {
   it('renders tabs and rows', () => {
     render(
@@ -26,9 +28,9 @@ describe('OrdersSection', () => {
         isLoading={false}
         sortKey="date"
         sortDirection="asc"
-        onTabChange={() => undefined}
-        onFilterChange={() => undefined}
-        onSortChange={() => undefined}
+        onTabChange={noop}
+        onFilterChange={noop}
+        onSortChange={noop}
       />,
     );
 
@@ -55,7 +57,7 @@ describe('OrdersSection', () => {
         sortDirection="asc"
         onTabChange={onTabChange}
         onFilterChange={onFilterChange}
-        onSortChange={() => undefined}
+        onSortChange={noop}
       />,
     );
 
@@ -76,9 +78,9 @@ describe('OrdersSection', () => {
         isLoading
         sortKey="date"
         sortDirection="asc"
-        onTabChange={() => undefined}
-        onFilterChange={() => undefined}
-        onSortChange={() => undefined}
+        onTabChange={noop}
+        onFilterChange={noop}
+        onSortChange={noop}
       />,
     );
 
@@ -95,9 +97,9 @@ describe('OrdersSection', () => {
         isLoading
         sortKey="date"
         sortDirection="asc"
-        onTabChange={() => undefined}
-        onFilterChange={() => undefined}
-        onSortChange={() => undefined}
+        onTabChange={noop}
+        onFilterChange={noop}
+        onSortChange={noop}
       />,
     );
 

@@ -1,67 +1,27 @@
-import { useAppDispatch, useAppSelector } from '@/app/store';
-import { customerRequested } from '@/features/customer/customerSlice';
-import {
-  newOrderOverlayClosed,
-  newOrderOverlayOpened,
-} from '@/features/new-order/newOrderSlice';
-import {
-  ordersFilterChanged,
-  ordersRequested,
-  ordersSortChanged,
-  ordersTabChanged,
-} from '@/features/orders/ordersSlice';
 import { DotsLoader } from '@/shared/ui/Loader/DotsLoader';
 import { ActivitySummary } from '@/widgets/activity-summary/ActivitySummary';
-import { CustomerSummary } from '@/widgets/customer-summary/CustomerSummary';
+import { CustomerSummary } from '@/widgets/customer-summary';
 import { Header } from '@/widgets/header/Header';
 import { NewOrderOverlay } from '@/widgets/new-order-overlay/NewOrderOverlay';
 import { OrdersSection } from '@/widgets/orders-section/OrdersSection';
-import { useEffect } from 'react';
 import './CustomerPage.scss';
+import { useCustomerPageViewModel } from './hooks/useCustomerPageViewModel';
 
 export const CustomerPage = () => {
-  const dispatch = useAppDispatch();
-  const customer = useAppSelector((state) => state.customer);
-  const newOrderOverlayOpen = useAppSelector(
-    (state) => state.newOrder.overlayOpen,
-  );
-  const orders = useAppSelector((state) => state.orders);
-  const visibleOrders = orders.orders;
-  const isSummaryLoading = customer.status === 'loading';
-  const isOrdersLoading = orders.status === 'loading';
-
-  useEffect(() => {
-    if (customer.status === 'idle') {
-      dispatch(customerRequested());
-    }
-  }, [customer.status, dispatch]);
-
-  useEffect(() => {
-    if (orders.status === 'idle') {
-      dispatch(ordersRequested());
-    }
-  }, [orders.status, dispatch]);
-
-  const sortedOrders = [...visibleOrders].sort((a, b) => {
-    const direction = orders.sortDirection === 'asc' ? 1 : -1;
-    switch (orders.sortKey) {
-      case 'date':
-        return (a.sentAt - b.sentAt) * direction;
-      case 'subject':
-        return a.subjectTitle.localeCompare(b.subjectTitle) * direction;
-      case 'type':
-        return (
-          a.communicationType.localeCompare(b.communicationType) * direction
-        );
-      case 'orderNumber':
-        return (
-          ((Number(a.orderNumber) || 0) - (Number(b.orderNumber) || 0)) *
-          direction
-        );
-      default:
-        return 0;
-    }
-  });
+  const {
+    customer,
+    orders,
+    sortedOrders,
+    errorNotices,
+    isSummaryLoading,
+    isOrdersLoading,
+    newOrderOverlayOpen,
+    handleTabChange,
+    handleFilterChange,
+    handleSortChange,
+    handleNewOrder,
+    handleOverlayClose,
+  } = useCustomerPageViewModel();
 
   return (
     <div className="customer-page">
@@ -70,22 +30,20 @@ export const CustomerPage = () => {
       >
         <Header
           title={customer.profile?.name ?? 'Customer'}
-          onNewOrder={() => dispatch(newOrderOverlayOpened())}
+          onNewOrder={handleNewOrder}
         />
         <div className="customer-page__notice-stack">
-          {customer.status === 'loading' ? (
+          {customer.status === 'loading' && (
             <div className="customer-page__notice">Loading data…</div>
-          ) : null}
-          {customer.status === 'error' ? (
-            <div className="customer-page__notice customer-page__notice--error">
-              {customer.error ?? 'Failed to load customer.'}
+          )}
+          {errorNotices.map((message, index) => (
+            <div
+              key={`${message}-${index}`}
+              className="customer-page__notice customer-page__notice--error"
+            >
+              {message}
             </div>
-          ) : null}
-          {orders.status === 'error' ? (
-            <div className="customer-page__notice customer-page__notice--error">
-              {orders.error ?? 'Failed to load orders.'}
-            </div>
-          ) : null}
+          ))}
         </div>
         <div className="customer-page__summary">
           <CustomerSummary
@@ -97,7 +55,7 @@ export const CustomerPage = () => {
             carrier={customer.carrier}
             isLoading={isSummaryLoading}
           />
-          {isSummaryLoading ? (
+          {isSummaryLoading && (
             <div className="customer-page__summary-overlay" role="status">
               <div className="customer-page__summary-overlay-content">
                 <DotsLoader />
@@ -106,7 +64,7 @@ export const CustomerPage = () => {
                 </div>
               </div>
             </div>
-          ) : null}
+          )}
         </div>
         <OrdersSection
           tabs={orders.tabs}
@@ -116,20 +74,12 @@ export const CustomerPage = () => {
           isLoading={isOrdersLoading}
           sortKey={orders.sortKey}
           sortDirection={orders.sortDirection}
-          onTabChange={(tab) => {
-            dispatch(ordersTabChanged(tab));
-            dispatch(ordersRequested({ delayMs: 1000 }));
-          }}
-          onFilterChange={(filter) => {
-            dispatch(ordersFilterChanged(filter));
-            dispatch(ordersRequested());
-          }}
-          onSortChange={(key) => dispatch(ordersSortChanged(key))}
+          onTabChange={handleTabChange}
+          onFilterChange={handleFilterChange}
+          onSortChange={handleSortChange}
         />
       </div>
-      {newOrderOverlayOpen ? (
-        <NewOrderOverlay onClose={() => dispatch(newOrderOverlayClosed())} />
-      ) : null}
+      {newOrderOverlayOpen && <NewOrderOverlay onClose={handleOverlayClose} />}
     </div>
   );
 };

@@ -1,32 +1,4 @@
-import type {
-  CarrierStatus,
-  CommunicationStats,
-  CustomerProfile,
-} from '@/entities/customer/types';
-import { httpClient } from '@/shared/api/httpClient';
-
-type CustomerSummaryResponse = {
-  id: number;
-  first_name: string;
-  last_name: string;
-  gender: string;
-  birth_date: string;
-  home_phone: string;
-  mobile_phone: string;
-  work_phone: string;
-  email: string;
-  activity: CommunicationStats;
-  carrier_status: {
-    since: string;
-    status: string;
-  };
-};
-
-export type CustomerPayload = {
-  profile: CustomerProfile;
-  stats: CommunicationStats;
-  carrier: CarrierStatus;
-};
+import type { CustomerPayload, CustomerSummaryResponse } from './types';
 
 const formatTitleCase = (value: string) =>
   value ? value.charAt(0).toUpperCase() + value.slice(1).toLowerCase() : value;
@@ -60,7 +32,7 @@ const calculateAge = (birthDate: string) => {
   return age;
 };
 
-const mapCustomerSummary = (
+export const mapCustomerSummary = (
   payload: CustomerSummaryResponse,
 ): CustomerPayload => ({
   profile: {
@@ -82,11 +54,3 @@ const mapCustomerSummary = (
     since: formatCarrierSince(payload.carrier_status.since),
   },
 });
-
-export const customerApi = {
-  getCustomer: async () => {
-    const response =
-      await httpClient.get<CustomerSummaryResponse>('/summary.json');
-    return mapCustomerSummary(response.data);
-  },
-};

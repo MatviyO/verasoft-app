@@ -297,8 +297,7 @@
   }
 
   &__resend {
-    width: 88px;
-    height: 28px;
+    padding: 7px 19px;
     background: #7d869a;
     opacity: 1;
     text-align: center;
@@ -319,6 +318,10 @@
     &:hover {
       background: #7d869a;
     }
+  }
+
+  &__resend.btn--sm {
+    padding: 7px 19px;
   }
 
   &__overlay {

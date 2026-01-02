@@ -45,6 +45,16 @@ export default defineConfig([
           ignoreRestSiblings: true,
         },
       ],
+      'react/jsx-no-bind': [
+        'error',
+        {
+          ignoreDOMComponents: true,
+          ignoreRefs: true,
+          allowArrowFunctions: false,
+          allowFunctions: false,
+          allowBind: false,
+        },
+      ],
     },
   },
 ]);

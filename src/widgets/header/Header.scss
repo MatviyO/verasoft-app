@@ -8,7 +8,7 @@
   &__title {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 17px;
     color: #333333;
   }
 
@@ -43,11 +43,10 @@
   }
 
   &__new-order {
-    width: 200px;
-    height: 40px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    padding: 10px 56px;
     background: #404040;
     border-radius: 4px;
     opacity: 1;
@@ -68,7 +67,7 @@
 @media (max-width: 1024px) {
   .header {
     &__new-order {
-      width: 160px;
+      width: auto;
     }
   }
 }

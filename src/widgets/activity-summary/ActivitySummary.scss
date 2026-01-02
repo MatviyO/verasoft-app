@@ -58,12 +58,7 @@
   &__stat-skeleton {
     height: 72px;
     border-radius: 6px;
-    background: linear-gradient(
-      90deg,
-      #d6e2f0 0%,
-      #f0f4f8 50%,
-      #d6e2f0 100%
-    );
+    background: linear-gradient(90deg, #d6e2f0 0%, #f0f4f8 50%, #d6e2f0 100%);
     background-size: 200% 100%;
     animation: activity-summary-skeleton 1.4s ease infinite;
   }
@@ -83,12 +78,7 @@
       height: 60px;
       margin: 0 auto;
       border-radius: 10px;
-      background: linear-gradient(
-        90deg,
-        #d6e2f0 0%,
-        #f0f4f8 50%,
-        #d6e2f0 100%
-      );
+      background: linear-gradient(90deg, #d6e2f0 0%, #f0f4f8 50%, #d6e2f0 100%);
       background-size: 200% 100%;
       animation: activity-summary-skeleton 1.4s ease infinite;
     }
@@ -108,12 +98,7 @@
     text-transform: uppercase;
 
     &--skeleton {
-      background: linear-gradient(
-        90deg,
-        #d6e2f0 0%,
-        #f0f4f8 50%,
-        #d6e2f0 100%
-      );
+      background: linear-gradient(90deg, #d6e2f0 0%, #f0f4f8 50%, #d6e2f0 100%);
       background-size: 200% 100%;
       animation: activity-summary-skeleton 1.4s ease infinite;
     }

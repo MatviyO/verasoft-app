@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { customerApi, type CustomerPayload } from './customerApi';
+import { customerApi, type CustomerPayload } from './api/customerApi';
 import {
   customerFailed,
   customerRequested,

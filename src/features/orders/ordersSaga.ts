@@ -1,7 +1,7 @@
 import type { RootState } from '@/app/store';
 import axios from 'axios';
 import { call, delay, put, select, takeLatest } from 'redux-saga/effects';
-import { ordersApi, type OrdersPayload } from './ordersApi';
+import { ordersApi, type OrdersPayload } from './api/ordersApi';
 import { ordersFailed, ordersRequested, ordersSucceeded } from './ordersSlice';
 
 function* handleOrdersLoad(action: ReturnType<typeof ordersRequested>) {

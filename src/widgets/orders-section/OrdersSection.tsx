@@ -3,6 +3,7 @@ import { Button } from '@/shared/ui/Button/Button';
 import { Card } from '@/shared/ui/Card/Card';
 import { TabList } from '@/shared/ui/Tabs/TabList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { MouseEvent } from 'react';
 import './OrdersSection.scss';
 
 const FILTER_OPTIONS = [
@@ -57,24 +58,33 @@ const OrdersFilters = ({
   isVisible,
   activeFilter,
   onChange,
-}: OrdersFiltersProps) => (
-  <div className="orders-section__filters">
-    {isVisible
-      ? FILTER_OPTIONS.map((option) => (
+}: OrdersFiltersProps) => {
+  const handleFilterClick = (event: MouseEvent<HTMLButtonElement>) => {
+    const value = event.currentTarget.dataset.value as OrdersFilterValue;
+    if (value) {
+      onChange(value);
+    }
+  };
+
+  return (
+    <div className="orders-section__filters">
+      {isVisible &&
+        FILTER_OPTIONS.map((option) => (
           <button
             className={`orders-section__filter ${
               activeFilter === option.value ? 'is-active' : ''
             }`.trim()}
-            onClick={() => onChange(option.value)}
+            onClick={handleFilterClick}
             type="button"
+            data-value={option.value}
             key={option.value}
           >
             <span className="orders-section__filter-label">{option.label}</span>
           </button>
-        ))
-      : null}
-  </div>
-);
+        ))}
+    </div>
+  );
+};
 
 type OrdersColumnsProps = {
   isVisible: boolean;
@@ -86,14 +96,22 @@ const OrdersColumns = ({ isVisible, onSortChange }: OrdersColumnsProps) => {
     return null;
   }
 
+  const handleSortClick = (event: MouseEvent<HTMLButtonElement>) => {
+    const key = event.currentTarget.dataset.key as OrdersSortKey;
+    if (key) {
+      onSortChange(key);
+    }
+  };
+
   return (
     <div className="orders-section__columns" role="row">
       {COLUMN_OPTIONS.map((column) => (
         <button
           className="orders-section__column-button"
           type="button"
-          onClick={() => onSortChange(column.key)}
+          onClick={handleSortClick}
           aria-label={column.ariaLabel}
+          data-key={column.key}
           key={column.key}
         >
           {column.label}
@@ -210,12 +228,12 @@ export const OrdersSection = ({
           </>
         ) : (
           <div className="orders-section__rows orders-section__rows--loading">
-            {!showLoadingOverlay ? (
+            {!showLoadingOverlay && (
               <InlineLoader className="orders-section__inline-loader" />
-            ) : null}
+            )}
           </div>
         )}
-        {showLoadingOverlay ? (
+        {showLoadingOverlay && (
           <div
             className="orders-section__overlay"
             role="status"
@@ -225,7 +243,7 @@ export const OrdersSection = ({
               <InlineLoader className="orders-section__overlay-loader" />
             </div>
           </div>
-        ) : null}
+        )}
       </Card>
     </section>
   );

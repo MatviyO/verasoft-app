@@ -1,40 +1,7 @@
 import type { Order } from '@/entities/order/types';
-import { httpClient } from '@/shared/api/httpClient';
+import type { RawOrder, RawOrdersResponse } from './types';
 
-type RawOrder = {
-  id: number;
-  order_id: number;
-  sent_dt: string;
-  sent_tm: string;
-  subject: {
-    title: string;
-    email: string;
-  };
-  type: string;
-};
-
-type RawOrdersResponse = {
-  orders_A: RawOrder[];
-  orders_AA: RawOrder[];
-  orders_AAA?: {
-    sent?: RawOrder[];
-    errors?: RawOrder[];
-  };
-  orders_B: RawOrder[];
-  orders_C: RawOrder[];
-};
-
-export type OrdersQuery = {
-  tab: string;
-  filter: 'sent' | 'errors';
-};
-
-export type OrdersPayload = {
-  orders: Order[];
-  tabs: string[];
-};
-
-const TABS = [
+export const TABS = [
   { key: 'orders_A', label: 'Orders A' },
   { key: 'orders_AA', label: 'Orders AA' },
   { key: 'orders_AAA', label: 'Orders AAA' },
@@ -85,7 +52,7 @@ const mapOrder = (order: RawOrder, status: 'sent' | 'error'): Order => {
   };
 };
 
-const getOrdersForTab = (
+export const getOrdersForTab = (
   data: RawOrdersResponse,
   tab: string,
   filter: 'sent' | 'errors',
@@ -106,14 +73,4 @@ const getOrdersForTab = (
   const rows =
     data[entry.key as Exclude<keyof RawOrdersResponse, 'orders_AAA'>] ?? [];
   return rows.map((order) => mapOrder(order, 'sent'));
-};
-
-export const ordersApi = {
-  getOrders: async ({ tab, filter }: OrdersQuery) => {
-    const response = await httpClient.get<RawOrdersResponse>('/orders.json');
-    return {
-      tabs: TABS.map((item) => item.label),
-      orders: getOrdersForTab(response.data, tab, filter),
-    };
-  },
 };
