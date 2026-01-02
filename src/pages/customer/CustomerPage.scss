@@ -3,16 +3,59 @@
   margin: 0 auto;
   padding: 18px 0 40px;
   color: #333333;
-}
 
-.customer-page__content {
-  transition: filter 0.25s ease;
-}
+  &__content {
+    transition: filter 0.25s ease;
 
-.customer-page__content--blurred {
-  filter: blur(4px);
-  pointer-events: none;
-  user-select: none;
+    &--blurred {
+      filter: blur(4px);
+      pointer-events: none;
+      user-select: none;
+    }
+  }
+
+  &__summary {
+    display: flex;
+    gap: 5px;
+    margin: 6.5px 0 7px;
+    position: relative;
+  }
+
+  &__notice {
+    margin: 12px 0;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: #f2f4f7;
+    font-size: 12px;
+    color: #4a4a4a;
+
+    &--error {
+      background: #fde7e7;
+      color: #8b2c2c;
+    }
+  }
+
+  &__summary-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.7);
+    display: grid;
+    place-items: center;
+    z-index: 2;
+  }
+
+  &__summary-overlay-content {
+    display: grid;
+    gap: 8px;
+    place-items: center;
+  }
+
+  &__summary-overlay-text {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #566070;
+    letter-spacing: 1px;
+  }
 }
 
 .orders-section {
@@ -21,66 +64,23 @@
   border-top: 1px solid #d4d4d4;
 }
 
-.customer-page__summary {
-  display: flex;
-  gap: 5px;
-  margin: 6.5px 0 7px;
-  position: relative;
-}
-
-.customer-page__notice {
-  margin: 12px 0;
-  padding: 8px 12px;
-  border-radius: 6px;
-  background: #f2f4f7;
-  font-size: 12px;
-  color: #4a4a4a;
-}
-
-.customer-page__notice--error {
-  background: #fde7e7;
-  color: #8b2c2c;
-}
-
-.customer-page__summary-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.7);
-  display: grid;
-  place-items: center;
-  z-index: 2;
-}
-
-.customer-page__summary-overlay-content {
-  display: grid;
-  gap: 8px;
-  place-items: center;
-}
-
-.customer-page__summary-overlay-text {
-  font-size: 12px;
-  text-transform: uppercase;
-  color: #566070;
-  letter-spacing: 1px;
-}
-
 @media (max-width: 1024px) {
   .customer-page {
     max-width: 100%;
     padding: 0 16px;
-  }
 
-  .customer-page__summary {
-    flex-wrap: wrap;
+    &__summary {
+      flex-wrap: wrap;
+    }
   }
 }
 
 @media (max-width: 768px) {
   .customer-page {
     padding: 0 12px;
-  }
 
-  .customer-page__summary {
-    flex-direction: column;
+    &__summary {
+      flex-direction: column;
+    }
   }
 }

@@ -9,73 +9,73 @@
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
   color: #ffffff;
-}
 
-.new-order-overlay__close {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 35px;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  text-align: left;
-  font: normal normal 300 35px/42px 'Font Awesome 5 Pro';
-  letter-spacing: 0px;
-  color: #eeeeee;
-  opacity: 1;
-  cursor: pointer;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-}
+  &__close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 35px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    text-align: left;
+    font: normal normal 300 35px/42px 'Font Awesome 5 Pro';
+    letter-spacing: 0px;
+    color: #eeeeee;
+    opacity: 1;
+    cursor: pointer;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
 
-.new-order-overlay__close svg {
-  width: 22px;
-  height: 35px;
-  display: block;
-}
+    svg {
+      width: 22px;
+      height: 35px;
+      display: block;
+    }
 
-.new-order-overlay__close:hover {
-  opacity: 0.85;
-}
+    &:hover {
+      opacity: 0.85;
+    }
+  }
 
-.new-order-overlay__content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  text-align: center;
-}
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+  }
 
-.new-order-overlay__spinner {
-  width: 75px;
-  height: 75px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: left;
-  font: normal normal 300 75px/90px 'Font Awesome 5 Pro';
-  letter-spacing: 0px;
-  color: #eeeeee;
-  opacity: 1;
-}
+  &__spinner {
+    width: 75px;
+    height: 75px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    font: normal normal 300 75px/90px 'Font Awesome 5 Pro';
+    letter-spacing: 0px;
+    color: #eeeeee;
+    opacity: 1;
 
-.new-order-overlay__text {
-  font:
-    normal normal normal 32px/43px 'Open Sans',
-    sans-serif;
-  letter-spacing: 0px;
-  color: #eeeeee;
-  opacity: 1;
-}
+    svg {
+      width: 75px;
+      height: 75px;
+      display: block;
+    }
+  }
 
-.new-order-overlay__spinner svg {
-  width: 75px;
-  height: 75px;
-  display: block;
+  &__text {
+    font:
+      normal normal normal 32px/43px 'Open Sans',
+      sans-serif;
+    letter-spacing: 0px;
+    color: #eeeeee;
+    opacity: 1;
+  }
 }

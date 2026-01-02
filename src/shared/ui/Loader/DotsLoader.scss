@@ -6,11 +6,11 @@
   font-size: 51px;
   line-height: 1;
   font-family: 'Font Awesome 5 Pro', 'Open Sans', sans-serif;
-}
 
-.dots-loader__glyph {
-  display: block;
-  animation: dots-pulse 1.2s infinite ease-in-out;
+  &__glyph {
+    display: block;
+    animation: dots-pulse 1.2s infinite ease-in-out;
+  }
 }
 
 @keyframes dots-pulse {

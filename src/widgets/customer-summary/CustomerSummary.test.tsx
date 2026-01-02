@@ -22,4 +22,15 @@ describe('CustomerSummary', () => {
     expect(screen.getByText(/#12345678/i)).toBeInTheDocument();
     expect(screen.getByText(/joe.smith@testemail.com/i)).toBeInTheDocument();
   });
+
+  it('renders skeleton while loading without profile', () => {
+    const { container } = render(<CustomerSummary isLoading />);
+
+    expect(
+      container.querySelector('.customer-summary__meta--skeleton'),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelectorAll('.customer-summary__value--skeleton'),
+    ).toHaveLength(4);
+  });
 });

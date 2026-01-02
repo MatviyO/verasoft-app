@@ -8,15 +8,15 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.4px;
-}
 
-.badge--neutral {
-  background: #ffffff;
-  border: 1px solid #cfcfcf;
-  color: #6d6d6d;
-}
+  &--neutral {
+    background: #ffffff;
+    border: 1px solid #cfcfcf;
+    color: #6d6d6d;
+  }
 
-.badge--dark {
-  background: #6f7581;
-  color: #ffffff;
+  &--dark {
+    background: #6f7581;
+    color: #ffffff;
+  }
 }

@@ -4,70 +4,72 @@
   justify-content: space-between;
   padding: 12px 0 14px;
   border-bottom: 2px solid #4d4d4d;
-}
 
-.header__title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #333333;
-}
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333333;
+  }
 
-.header__icon {
-  width: 28px;
-  height: 25px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: left;
-  font: normal normal 300 25px/30px 'Font Awesome 5 Pro';
-  letter-spacing: 0px;
-  color: #aaaaaa;
-  opacity: 1;
-}
+  &__icon {
+    width: 28px;
+    height: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    font: normal normal 300 25px/30px 'Font Awesome 5 Pro';
+    letter-spacing: 0px;
+    color: #aaaaaa;
+    opacity: 1;
 
-.header__icon svg {
-  width: 28px;
-  height: 25px;
-  display: block;
-}
+    svg {
+      width: 28px;
+      height: 25px;
+      display: block;
+    }
+  }
 
-.header h1 {
-  text-align: left;
-  font:
-    normal normal 600 25px/34px 'Open Sans',
-    sans-serif;
-  letter-spacing: 0;
-  color: #000000;
-  opacity: 1;
-  margin: 0;
-}
+  h1 {
+    text-align: left;
+    font:
+      normal normal 600 25px/34px 'Open Sans',
+      sans-serif;
+    letter-spacing: 0;
+    color: #000000;
+    opacity: 1;
+    margin: 0;
+  }
 
-.header__new-order {
-  width: 200px;
-  height: 40px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #404040;
-  border-radius: 4px;
-  opacity: 1;
-  text-align: center;
-  font:
-    normal normal normal 18px/21px Arial,
-    sans-serif;
-  letter-spacing: 0;
-  color: #fcfeff;
-  box-shadow: none;
-}
+  &__new-order {
+    width: 200px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #404040;
+    border-radius: 4px;
+    opacity: 1;
+    text-align: center;
+    font:
+      normal normal normal 18px/21px Arial,
+      sans-serif;
+    letter-spacing: 0;
+    color: #fcfeff;
+    box-shadow: none;
 
-.header__new-order:hover {
-  background: #404040;
+    &:hover {
+      background: #404040;
+    }
+  }
 }
 
 @media (max-width: 1024px) {
-  .header__new-order {
-    width: 160px;
+  .header {
+    &__new-order {
+      width: 160px;
+    }
   }
 }
 
@@ -76,9 +78,9 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-  }
 
-  .header__new-order {
-    width: 100%;
+    &__new-order {
+      width: 100%;
+    }
   }
 }
