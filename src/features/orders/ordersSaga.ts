@@ -1,17 +1,23 @@
+import type { RootState } from '@/app/store';
 import axios from 'axios';
-import { call, delay, put, takeLatest } from 'redux-saga/effects';
+import { call, delay, put, select, takeLatest } from 'redux-saga/effects';
 import { ordersApi, type OrdersPayload } from './ordersApi';
-import {
-  ordersErrorsLoadingSet,
-  ordersFailed,
-  ordersFilterChanged,
-  ordersRequested,
-  ordersSucceeded,
-} from './ordersSlice';
+import { ordersFailed, ordersRequested, ordersSucceeded } from './ordersSlice';
 
-function* handleOrdersLoad() {
+function* handleOrdersLoad(action: ReturnType<typeof ordersRequested>) {
   try {
-    const data: OrdersPayload = yield call(ordersApi.getOrders);
+    const { activeTab, filter } = (yield select(
+      (state: RootState) => state.orders,
+    )) as RootState['orders'];
+    if (filter === 'errors') {
+      yield delay(2000);
+    } else if (action.payload?.delayMs) {
+      yield delay(action.payload.delayMs);
+    }
+    const data: OrdersPayload = yield call(ordersApi.getOrders, {
+      tab: activeTab,
+      filter,
+    });
     yield put(ordersSucceeded(data));
   } catch (error) {
     const message = axios.isAxiosError(error)
@@ -23,18 +29,4 @@ function* handleOrdersLoad() {
 
 export function* ordersSaga() {
   yield takeLatest(ordersRequested.type, handleOrdersLoad);
-  yield takeLatest(ordersFilterChanged.type, handleOrdersFilterChange);
-}
-
-function* handleOrdersFilterChange(
-  action: ReturnType<typeof ordersFilterChanged>,
-) {
-  if (action.payload !== 'errors') {
-    yield put(ordersErrorsLoadingSet(false));
-    return;
-  }
-
-  yield put(ordersErrorsLoadingSet(true));
-  yield delay(2000);
-  yield put(ordersErrorsLoadingSet(false));
 }

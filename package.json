@@ -22,7 +22,7 @@
     "@reduxjs/toolkit": "^2.9.0",
     "axios": "^1.12.2",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react-dom": "^1та9.2.0",
     "react-redux": "^9.2.0",
     "redux-saga": "^1.3.0"
   },

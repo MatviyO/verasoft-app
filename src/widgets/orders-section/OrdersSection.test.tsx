@@ -15,16 +15,20 @@ describe('OrdersSection', () => {
             id: 'o-1',
             date: 'Sat, Apr 14',
             time: '4:19 PM',
-            subject: 'Thank You Bonus',
-            contact: 'joe.smith@testemail.com',
+            sentAt: 100,
+            subjectTitle: 'Thank You Bonus',
+            subjectEmail: 'joe.smith@testemail.com',
             communicationType: 'Promotion Email',
             orderNumber: '12345546',
             status: 'sent',
           },
         ]}
-        errorsLoading={false}
+        isLoading={false}
+        sortKey="date"
+        sortDirection="asc"
         onTabChange={() => undefined}
         onFilterChange={() => undefined}
+        onSortChange={() => undefined}
       />,
     );
 
@@ -43,12 +47,15 @@ describe('OrdersSection', () => {
     render(
       <OrdersSection
         tabs={['Orders A', 'Orders AAA']}
-        activeTab="Orders A"
+        activeTab="Orders AAA"
         filter="sent"
         orders={[]}
-        errorsLoading={false}
+        isLoading={false}
+        sortKey="date"
+        sortDirection="asc"
         onTabChange={onTabChange}
         onFilterChange={onFilterChange}
+        onSortChange={() => undefined}
       />,
     );
 
@@ -59,16 +66,19 @@ describe('OrdersSection', () => {
     expect(onFilterChange).toHaveBeenCalledWith('errors');
   });
 
-  it('shows loader when errors are loading', () => {
+  it('shows loader when data is loading', () => {
     render(
       <OrdersSection
         tabs={['Orders A']}
         activeTab="Orders A"
         filter="errors"
         orders={[]}
-        errorsLoading
+        isLoading
+        sortKey="date"
+        sortDirection="asc"
         onTabChange={() => undefined}
         onFilterChange={() => undefined}
+        onSortChange={() => undefined}
       />,
     );
 

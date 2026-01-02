@@ -1,6 +1,9 @@
 import type { Order } from '@/entities/order/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+export type OrdersSortKey = 'date' | 'subject' | 'type' | 'orderNumber';
+export type OrdersSortDirection = 'asc' | 'desc';
+
 type OrdersState = {
   status: 'idle' | 'loading' | 'success' | 'error';
   error: string | null;
@@ -8,26 +11,32 @@ type OrdersState = {
   tabs: string[];
   activeTab: string;
   filter: 'sent' | 'errors';
-  errorsLoading: boolean;
+  sortKey: OrdersSortKey;
+  sortDirection: OrdersSortDirection;
 };
 
 const initialState: OrdersState = {
   status: 'idle',
   error: null,
   orders: [],
-  tabs: [],
+  tabs: ['Orders A', 'Orders AA', 'Orders AAA', 'Orders B', 'Orders C'],
   activeTab: 'Orders AAA',
   filter: 'sent',
-  errorsLoading: false,
+  sortKey: 'date',
+  sortDirection: 'desc',
 };
 
 const ordersSlice = createSlice({
   name: 'orders',
   initialState,
   reducers: {
-    ordersRequested: (state) => {
+    ordersRequested: (
+      state,
+      action: PayloadAction<{ delayMs?: number } | undefined>,
+    ) => {
       state.status = 'loading';
       state.error = null;
+      void action;
     },
     ordersSucceeded: (
       state,
@@ -50,8 +59,13 @@ const ordersSlice = createSlice({
     ordersFilterChanged: (state, action: PayloadAction<'sent' | 'errors'>) => {
       state.filter = action.payload;
     },
-    ordersErrorsLoadingSet: (state, action: PayloadAction<boolean>) => {
-      state.errorsLoading = action.payload;
+    ordersSortChanged: (state, action: PayloadAction<OrdersSortKey>) => {
+      if (state.sortKey === action.payload) {
+        state.sortDirection = state.sortDirection === 'asc' ? 'desc' : 'asc';
+        return;
+      }
+      state.sortKey = action.payload;
+      state.sortDirection = 'asc';
     },
   },
 });
@@ -62,7 +76,7 @@ export const {
   ordersFailed,
   ordersTabChanged,
   ordersFilterChanged,
-  ordersErrorsLoadingSet,
+  ordersSortChanged,
 } = ordersSlice.actions;
 
 export const ordersReducer = ordersSlice.reducer;

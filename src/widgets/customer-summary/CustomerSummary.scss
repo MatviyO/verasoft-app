@@ -66,6 +66,15 @@
   opacity: 1;
 }
 
+.customer-summary__meta--skeleton {
+  width: 52px;
+  height: 10px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #d6e2f0 0%, #f0f4f8 50%, #d6e2f0 100%);
+  background-size: 200% 100%;
+  animation: customer-summary-skeleton 1.4s ease infinite;
+}
+
 .customer-summary__details {
   display: grid;
   gap: 6px;
@@ -110,4 +119,23 @@
 
 .customer-summary__value {
   color: #333333;
+}
+
+.customer-summary__value--skeleton {
+  display: block;
+  width: 150px;
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #d6e2f0 0%, #f0f4f8 50%, #d6e2f0 100%);
+  background-size: 200% 100%;
+  animation: customer-summary-skeleton 1.4s ease infinite;
+}
+
+@keyframes customer-summary-skeleton {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }

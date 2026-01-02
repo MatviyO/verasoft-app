@@ -25,6 +25,11 @@
   display: flex;
   gap: 5px;
   margin: 6.5px 0 7px;
+  position: relative;
+}
+
+.customer-page__notice-stack {
+  min-height: 36px;
 }
 
 .customer-page__notice {
@@ -39,4 +44,26 @@
 .customer-page__notice--error {
   background: #fde7e7;
   color: #8b2c2c;
+}
+
+.customer-page__summary-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.7);
+  display: grid;
+  place-items: center;
+  z-index: 2;
+}
+
+.customer-page__summary-overlay-content {
+  display: grid;
+  gap: 8px;
+  place-items: center;
+}
+
+.customer-page__summary-overlay-text {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #566070;
+  letter-spacing: 1px;
 }

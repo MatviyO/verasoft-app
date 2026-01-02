@@ -7,8 +7,10 @@ import {
 import {
   ordersFilterChanged,
   ordersRequested,
+  ordersSortChanged,
   ordersTabChanged,
 } from '@/features/orders/ordersSlice';
+import { DotsLoader } from '@/shared/ui/Loader/DotsLoader';
 import { ActivitySummary } from '@/widgets/activity-summary/ActivitySummary';
 import { CustomerSummary } from '@/widgets/customer-summary/CustomerSummary';
 import { Header } from '@/widgets/header/Header';
@@ -24,9 +26,9 @@ export const CustomerPage = () => {
     (state) => state.newOrder.overlayOpen,
   );
   const orders = useAppSelector((state) => state.orders);
-  const visibleOrders = orders.orders.filter(
-    (order) => order.status === orders.filter,
-  );
+  const visibleOrders = orders.orders;
+  const isSummaryLoading = customer.status === 'loading';
+  const isOrdersLoading = orders.status === 'loading';
 
   useEffect(() => {
     if (customer.status === 'idle') {
@@ -40,6 +42,27 @@ export const CustomerPage = () => {
     }
   }, [orders.status, dispatch]);
 
+  const sortedOrders = [...visibleOrders].sort((a, b) => {
+    const direction = orders.sortDirection === 'asc' ? 1 : -1;
+    switch (orders.sortKey) {
+      case 'date':
+        return (a.sentAt - b.sentAt) * direction;
+      case 'subject':
+        return a.subjectTitle.localeCompare(b.subjectTitle) * direction;
+      case 'type':
+        return (
+          a.communicationType.localeCompare(b.communicationType) * direction
+        );
+      case 'orderNumber':
+        return (
+          ((Number(a.orderNumber) || 0) - (Number(b.orderNumber) || 0)) *
+          direction
+        );
+      default:
+        return 0;
+    }
+  });
+
   return (
     <div className="customer-page">
       <div
@@ -49,38 +72,59 @@ export const CustomerPage = () => {
           title={customer.profile?.name ?? 'Customer'}
           onNewOrder={() => dispatch(newOrderOverlayOpened())}
         />
-        {customer.status === 'loading' || orders.status === 'loading' ? (
-          <div className="customer-page__notice">Loading data…</div>
-        ) : null}
-        {customer.status === 'error' ? (
-          <div className="customer-page__notice customer-page__notice--error">
-            {customer.error ?? 'Failed to load customer.'}
-          </div>
-        ) : null}
-        {orders.status === 'error' ? (
-          <div className="customer-page__notice customer-page__notice--error">
-            {orders.error ?? 'Failed to load orders.'}
-          </div>
-        ) : null}
-        <div className="customer-page__summary">
-          {customer.profile ? (
-            <CustomerSummary profile={customer.profile} />
+        <div className="customer-page__notice-stack">
+          {customer.status === 'loading' ? (
+            <div className="customer-page__notice">Loading data…</div>
           ) : null}
-          {customer.stats && customer.carrier ? (
-            <ActivitySummary
-              stats={customer.stats}
-              carrier={customer.carrier}
-            />
+          {customer.status === 'error' ? (
+            <div className="customer-page__notice customer-page__notice--error">
+              {customer.error ?? 'Failed to load customer.'}
+            </div>
+          ) : null}
+          {orders.status === 'error' ? (
+            <div className="customer-page__notice customer-page__notice--error">
+              {orders.error ?? 'Failed to load orders.'}
+            </div>
+          ) : null}
+        </div>
+        <div className="customer-page__summary">
+          <CustomerSummary
+            profile={customer.profile}
+            isLoading={isSummaryLoading}
+          />
+          <ActivitySummary
+            stats={customer.stats}
+            carrier={customer.carrier}
+            isLoading={isSummaryLoading}
+          />
+          {isSummaryLoading ? (
+            <div className="customer-page__summary-overlay" role="status">
+              <div className="customer-page__summary-overlay-content">
+                <DotsLoader />
+                <div className="customer-page__summary-overlay-text">
+                  Loading customer summary
+                </div>
+              </div>
+            </div>
           ) : null}
         </div>
         <OrdersSection
           tabs={orders.tabs}
           activeTab={orders.activeTab}
           filter={orders.filter}
-          orders={visibleOrders}
-          errorsLoading={orders.errorsLoading}
-          onTabChange={(tab) => dispatch(ordersTabChanged(tab))}
-          onFilterChange={(filter) => dispatch(ordersFilterChanged(filter))}
+          orders={sortedOrders}
+          isLoading={isOrdersLoading}
+          sortKey={orders.sortKey}
+          sortDirection={orders.sortDirection}
+          onTabChange={(tab) => {
+            dispatch(ordersTabChanged(tab));
+            dispatch(ordersRequested({ delayMs: 1000 }));
+          }}
+          onFilterChange={(filter) => {
+            dispatch(ordersFilterChanged(filter));
+            dispatch(ordersRequested());
+          }}
+          onSortChange={(key) => dispatch(ordersSortChanged(key))}
         />
       </div>
       {newOrderOverlayOpen ? (
