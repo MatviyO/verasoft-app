@@ -71,7 +71,7 @@ describe('OrdersSection', () => {
       <OrdersSection
         tabs={['Orders A']}
         activeTab="Orders A"
-        filter="errors"
+        filter="sent"
         orders={[]}
         isLoading
         sortKey="date"
@@ -83,5 +83,24 @@ describe('OrdersSection', () => {
     );
 
     expect(screen.getByLabelText(/loading/i)).toBeInTheDocument();
+  });
+
+  it('does not show overlay loader on errors tab', () => {
+    render(
+      <OrdersSection
+        tabs={['Orders A']}
+        activeTab="Orders A"
+        filter="errors"
+        orders={[]}
+        isLoading
+        sortKey="date"
+        sortDirection="asc"
+        onTabChange={() => undefined}
+        onFilterChange={() => undefined}
+        onSortChange={() => undefined}
+      />,
+    );
+
+    expect(screen.queryByLabelText(/loading/i)).not.toBeInTheDocument();
   });
 });

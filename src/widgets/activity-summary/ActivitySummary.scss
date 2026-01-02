@@ -10,9 +10,6 @@
   padding: 6px 0 0;
   background: #edf5ff;
   border-radius: 0;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
   text-align: center;
   display: grid;
   grid-template-rows: auto 1fr;
@@ -25,18 +22,9 @@
   padding: 6px 0 0;
   background: #edffed;
   border-radius: 0;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
   display: grid;
   grid-template-rows: auto 1fr auto;
   box-sizing: border-box;
-}
-
-.activity-summary__activity:hover,
-.activity-summary__carrier:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(21, 31, 48, 0.18);
 }
 
 .activity-summary__title {

@@ -1,5 +1,6 @@
 import type { CustomerProfile } from '@/entities/customer/types';
 import { Card } from '@/shared/ui/Card/Card';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './CustomerSummary.scss';
 
 type CustomerSummaryProps = {
@@ -50,22 +51,49 @@ export const CustomerSummary = ({
           ) : profile ? (
             <>
               <div className="customer-summary__item customer-summary__item--id">
-                <span className="customer-summary__value">
-                  #{profile?.accountId}
-                </span>
-              </div>
-              {phones.map((phone, index) => (
-                <div
-                  className="customer-summary__item customer-summary__item--phone"
-                  key={`${phone}-${index}`}
+                <a
+                  href={`#${profile?.accountId}`}
+                  className="customer-summary__value"
                 >
-                  <span className="customer-summary__value">{phone}</span>
-                </div>
-              ))}
+                  #{profile?.accountId}
+                </a>
+              </div>
+              {phones.map((phone, index) => {
+                const displayPhone =
+                  index === 1 ? '248-555-1000 ext 1023' : phone;
+                const phoneHref = `tel:${displayPhone.replace(/\s+/g, '')}`;
+                return (
+                  <div
+                    className="customer-summary__item customer-summary__item--phone"
+                    key={`${phone}-${index}`}
+                  >
+                    <span className="customer-summary__icon" aria-hidden="true">
+                      {index === 0 ? (
+                        <FontAwesomeIcon icon={['fas', 'mobile-alt']} />
+                      ) : index === 1 ? (
+                        <FontAwesomeIcon icon={['far', 'building']} />
+                      ) : index === 2 ? (
+                        <FontAwesomeIcon icon={['far', 'home']} />
+                      ) : index === 3 ? (
+                        <FontAwesomeIcon icon={['far', 'envelope']} />
+                      ) : null}
+                    </span>
+                    <a href={phoneHref} className="customer-summary__value">
+                      {displayPhone}
+                    </a>
+                  </div>
+                );
+              })}
               <div className="customer-summary__item customer-summary__item--email">
-                <span className="customer-summary__value">
-                  {profile?.email}
+                <span className="customer-summary__icon" aria-hidden="true">
+                  <FontAwesomeIcon icon={['fas', 'at']} />
                 </span>
+                <a
+                  href={`mailto:${profile?.email}`}
+                  className="customer-summary__value"
+                >
+                  {profile?.email}
+                </a>
               </div>
             </>
           ) : null}

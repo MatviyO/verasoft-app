@@ -16,13 +16,20 @@
 .header__icon {
   width: 28px;
   height: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-align: left;
-  font:
-    normal normal 300 25px/30px 'Font Awesome 5 Pro',
-    sans-serif;
-  letter-spacing: 0;
+  font: normal normal 300 25px/30px 'Font Awesome 5 Pro';
+  letter-spacing: 0px;
   color: #aaaaaa;
   opacity: 1;
+}
+
+.header__icon svg {
+  width: 28px;
+  height: 25px;
+  display: block;
 }
 
 .header h1 {

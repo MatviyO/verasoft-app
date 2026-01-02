@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import App from './app/App.tsx';
 import { store } from './app/store';
 import './index.scss';
+import './shared/config/fontAwesome';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
