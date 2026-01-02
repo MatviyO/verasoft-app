@@ -3,7 +3,7 @@ import type {
   CommunicationStats,
   CustomerProfile,
 } from '@/entities/customer/types';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 type CustomerState = {
   status: 'idle' | 'loading' | 'success' | 'error';

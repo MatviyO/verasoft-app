@@ -125,3 +125,22 @@
     background-position: -200% 0;
   }
 }
+
+@media (max-width: 1024px) {
+  .activity-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-summary__activity,
+  .activity-summary__carrier {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .activity-summary__activity,
+  .activity-summary__carrier {
+    height: auto;
+    padding-bottom: 12px;
+  }
+}

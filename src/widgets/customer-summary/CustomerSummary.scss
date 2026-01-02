@@ -139,3 +139,24 @@
     background-position: -200% 0;
   }
 }
+
+@media (max-width: 1024px) {
+  .customer-summary {
+    grid-template-columns: 97px 1fr;
+  }
+
+  .customer-summary__details-card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .customer-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .customer-summary__profile,
+  .customer-summary__details-card {
+    width: 100%;
+  }
+}

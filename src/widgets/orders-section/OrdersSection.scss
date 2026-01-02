@@ -309,3 +309,49 @@
   color: #566070;
   letter-spacing: 1px;
 }
+
+@media (max-width: 1024px) {
+  .orders-section__tabs {
+    height: auto;
+    padding: 10px 12px;
+  }
+
+  .orders-section__tabs .tabs {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .orders-section__tabs .tabs__tab {
+    width: 140px;
+  }
+
+  .orders-section__columns,
+  .orders-section__row {
+    min-width: 720px;
+  }
+
+  .orders-section__table {
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .orders-section__tabs .tabs__tab {
+    width: 120px;
+  }
+
+  .orders-section__header {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    height: auto;
+    padding: 10px 12px;
+  }
+
+  .orders-section__filters {
+    justify-content: flex-start;
+  }
+
+  .orders-section__title {
+    text-align: left;
+  }
+}

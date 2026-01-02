@@ -178,7 +178,6 @@ export const OrdersSection = ({
           <div className="orders-section__overlay" role="status">
             <div className="orders-section__overlay-content">
               <DotsLoader />
-              <div className="orders-section__overlay-text">Loading orders</div>
             </div>
           </div>
         ) : null}

@@ -103,7 +103,8 @@ const getOrdersForTab = (
   if (!entry) {
     return [];
   }
-  const rows = data[entry.key as keyof RawOrdersResponse] ?? [];
+  const rows =
+    data[entry.key as Exclude<keyof RawOrdersResponse, 'orders_AAA'>] ?? [];
   return rows.map((order) => mapOrder(order, 'sent'));
 };
 

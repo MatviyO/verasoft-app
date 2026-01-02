@@ -67,3 +67,24 @@
   color: #566070;
   letter-spacing: 1px;
 }
+
+@media (max-width: 1024px) {
+  .customer-page {
+    max-width: 100%;
+    padding: 0 16px;
+  }
+
+  .customer-page__summary {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .customer-page {
+    padding: 0 12px;
+  }
+
+  .customer-page__summary {
+    flex-direction: column;
+  }
+}

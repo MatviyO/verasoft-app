@@ -5,7 +5,7 @@ import { render } from '@testing-library/react';
 import type { ReactElement } from 'react';
 import { Provider } from 'react-redux';
 
-export const createTestStore = (preloadedState?: Partial<RootState>) =>
+const createTestStore = (preloadedState?: Partial<RootState>) =>
   configureStore({
     reducer: rootReducer,
     preloadedState: preloadedState as RootState,

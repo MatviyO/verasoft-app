@@ -1,8 +1,8 @@
 import type { Order } from '@/entities/order/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type OrdersSortKey = 'date' | 'subject' | 'type' | 'orderNumber';
-export type OrdersSortDirection = 'asc' | 'desc';
+type OrdersSortKey = 'date' | 'subject' | 'type' | 'orderNumber';
+type OrdersSortDirection = 'asc' | 'desc';
 
 type OrdersState = {
   status: 'idle' | 'loading' | 'success' | 'error';

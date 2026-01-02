@@ -1,5 +1,5 @@
 {
-  "entry": ["src/index.ts", "src/utils.ts"],
+  "entry": ["src/*"],
   "project": ["src/**/*"],
   "ignore": [],
   "ignoreDependencies": []
