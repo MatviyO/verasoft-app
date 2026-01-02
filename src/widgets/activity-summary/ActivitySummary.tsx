@@ -1,15 +1,15 @@
 import type {
   CarrierStatus,
   CommunicationStats,
-} from '@/entities/customer/types'
-import { Card } from '@/shared/ui/Card/Card'
-import { StatTile } from '@/shared/ui/StatTile/StatTile'
-import './ActivitySummary.scss'
+} from '@/entities/customer/types';
+import { Card } from '@/shared/ui/Card/Card';
+import { StatTile } from '@/shared/ui/StatTile/StatTile';
+import './ActivitySummary.scss';
 
 type ActivitySummaryProps = {
-  stats: CommunicationStats
-  carrier: CarrierStatus
-}
+  stats: CommunicationStats;
+  carrier: CarrierStatus;
+};
 
 export const ActivitySummary = ({ stats, carrier }: ActivitySummaryProps) => (
   <div className="activity-summary">
@@ -31,4 +31,4 @@ export const ActivitySummary = ({ stats, carrier }: ActivitySummaryProps) => (
       </div>
     </Card>
   </div>
-)
+);

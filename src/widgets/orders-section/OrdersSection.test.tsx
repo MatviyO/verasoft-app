@@ -1,7 +1,7 @@
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { describe, expect, it, vi } from 'vitest'
-import { OrdersSection } from './OrdersSection'
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { describe, expect, it, vi } from 'vitest';
+import { OrdersSection } from './OrdersSection';
 
 describe('OrdersSection', () => {
   it('renders tabs and rows', () => {
@@ -26,19 +26,19 @@ describe('OrdersSection', () => {
         onTabChange={() => undefined}
         onFilterChange={() => undefined}
       />,
-    )
+    );
 
     expect(screen.getByRole('tab', { name: /orders aaa/i })).toHaveAttribute(
       'aria-selected',
       'true',
-    )
-    expect(screen.getByText(/promotion email/i)).toBeInTheDocument()
-  })
+    );
+    expect(screen.getByText(/promotion email/i)).toBeInTheDocument();
+  });
 
   it('calls handlers on click', async () => {
-    const user = userEvent.setup()
-    const onTabChange = vi.fn()
-    const onFilterChange = vi.fn()
+    const user = userEvent.setup();
+    const onTabChange = vi.fn();
+    const onFilterChange = vi.fn();
 
     render(
       <OrdersSection
@@ -50,14 +50,14 @@ describe('OrdersSection', () => {
         onTabChange={onTabChange}
         onFilterChange={onFilterChange}
       />,
-    )
+    );
 
-    await user.click(screen.getByRole('tab', { name: /orders aaa/i }))
-    await user.click(screen.getByText(/errors/i))
+    await user.click(screen.getByRole('tab', { name: /orders aaa/i }));
+    await user.click(screen.getByText(/errors/i));
 
-    expect(onTabChange).toHaveBeenCalledWith('Orders AAA')
-    expect(onFilterChange).toHaveBeenCalledWith('errors')
-  })
+    expect(onTabChange).toHaveBeenCalledWith('Orders AAA');
+    expect(onFilterChange).toHaveBeenCalledWith('errors');
+  });
 
   it('shows loader when errors are loading', () => {
     render(
@@ -70,8 +70,8 @@ describe('OrdersSection', () => {
         onTabChange={() => undefined}
         onFilterChange={() => undefined}
       />,
-    )
+    );
 
-    expect(screen.getByLabelText(/loading/i)).toBeInTheDocument()
-  })
-})
+    expect(screen.getByLabelText(/loading/i)).toBeInTheDocument();
+  });
+});

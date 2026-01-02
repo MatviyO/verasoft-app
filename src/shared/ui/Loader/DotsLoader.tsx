@@ -1,4 +1,4 @@
-import './DotsLoader.scss'
+import './DotsLoader.scss';
 
 export const DotsLoader = () => (
   <div className="dots-loader" role="status" aria-label="Loading">
@@ -6,4 +6,4 @@ export const DotsLoader = () => (
       ...
     </span>
   </div>
-)
+);

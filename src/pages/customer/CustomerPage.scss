@@ -5,15 +5,26 @@
   color: #333333;
 }
 
+.customer-page__content {
+  transition: filter 0.25s ease;
+}
+
+.customer-page__content--blurred {
+  filter: blur(4px);
+  pointer-events: none;
+  user-select: none;
+}
+
 .orders-section {
   max-width: 1135px;
   margin: 0 auto;
+  border-top: 1px solid #d4d4d4;
 }
 
 .customer-page__summary {
   display: flex;
   gap: 5px;
-  margin: 10px 0 7px;
+  margin: 6.5px 0 7px;
 }
 
 .customer-page__notice {

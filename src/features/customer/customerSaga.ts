@@ -1,24 +1,24 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
-import axios from 'axios'
-import { customerApi, type CustomerPayload } from './customerApi'
+import axios from 'axios';
+import { call, put, takeLatest } from 'redux-saga/effects';
+import { customerApi, type CustomerPayload } from './customerApi';
 import {
   customerFailed,
   customerRequested,
   customerSucceeded,
-} from './customerSlice'
+} from './customerSlice';
 
 function* handleCustomerLoad() {
   try {
-    const data: CustomerPayload = yield call(customerApi.getCustomer)
-    yield put(customerSucceeded(data))
+    const data: CustomerPayload = yield call(customerApi.getCustomer);
+    yield put(customerSucceeded(data));
   } catch (error) {
     const message = axios.isAxiosError(error)
-      ? error.response?.data?.message ?? error.message
-      : 'Unexpected error'
-    yield put(customerFailed(message))
+      ? (error.response?.data?.message ?? error.message)
+      : 'Unexpected error';
+    yield put(customerFailed(message));
   }
 }
 
 export function* customerSaga() {
-  yield takeLatest(customerRequested.type, handleCustomerLoad)
+  yield takeLatest(customerRequested.type, handleCustomerLoad);
 }

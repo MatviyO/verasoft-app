@@ -1,10 +1,10 @@
-import type { CustomerProfile } from '@/entities/customer/types'
-import { Card } from '@/shared/ui/Card/Card'
-import './CustomerSummary.scss'
+import type { CustomerProfile } from '@/entities/customer/types';
+import { Card } from '@/shared/ui/Card/Card';
+import './CustomerSummary.scss';
 
 type CustomerSummaryProps = {
-  profile: CustomerProfile
-}
+  profile: CustomerProfile;
+};
 
 export const CustomerSummary = ({ profile }: CustomerSummaryProps) => (
   <div className="customer-summary">
@@ -35,4 +35,4 @@ export const CustomerSummary = ({ profile }: CustomerSummaryProps) => (
       </div>
     </Card>
   </div>
-)
+);

@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
-import { CustomerSummary } from './CustomerSummary'
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+import { CustomerSummary } from './CustomerSummary';
 
 describe('CustomerSummary', () => {
   it('renders customer profile data', () => {
@@ -16,10 +16,10 @@ describe('CustomerSummary', () => {
           accountId: '12345678',
         }}
       />,
-    )
+    );
 
-    expect(screen.getByText(/male - 33/i)).toBeInTheDocument()
-    expect(screen.getByText(/#12345678/i)).toBeInTheDocument()
-    expect(screen.getByText(/joe.smith@testemail.com/i)).toBeInTheDocument()
-  })
-})
+    expect(screen.getByText(/male - 33/i)).toBeInTheDocument();
+    expect(screen.getByText(/#12345678/i)).toBeInTheDocument();
+    expect(screen.getByText(/joe.smith@testemail.com/i)).toBeInTheDocument();
+  });
+});
